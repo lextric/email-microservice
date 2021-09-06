@@ -1,12 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 
+export interface EmailOptions {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+}
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(@Inject('EMAIL_SERVICE') private client: ClientProxy) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('email')
+  sendEmail(@Body() options: EmailOptions) {
+    return this.client.send('mail_send', options)
   }
 }
