@@ -4,8 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "(cd email && npm i); (cd main && npm i)",
+    "start": "concurrently --names \"MAIN,EMAIL,NOTIFY\" -c \"bgBlue.bold,bgMagenta.bold\" npm:start:main npm:start:email notification-catcher",
+    "start:main": "cd main && npm start",
+    "start:email": "cd email && npm start",
+    "test:email": "cd email && npm run test && npm run test:e2e",
+    "test:main": "cd main && npm run test",
+    "test": "npm run test:email && npm run test:main"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "notification-catcher": "^1.2.1"
+  }
 }
