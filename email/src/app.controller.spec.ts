@@ -16,7 +16,7 @@ describe('AppController', () => {
 
   describe('email', () => {
     it('should able to send email', async () => {
-      const response = await appController.mailSend({
+      const response = await appController.sendEmail({
         from: 'from@test.com',
         to: 'to@test.com',
         subject: 'Subject',

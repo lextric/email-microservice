@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern('mail_send')
-  mailSend(options: EmailOptions) {
+  sendEmail(options: EmailOptions) {
     return this.appService.sendEmail(options)
   }
 }
