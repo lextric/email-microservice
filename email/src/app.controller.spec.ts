@@ -14,9 +14,15 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+  describe('email', () => {
+    it('should able to send email"', async () => {
+      const response = await appController.mailSend({
+        from: 'from@test.com',
+        to: 'to@test.com',
+        subject: 'Subject',
+        html: 'Testing'
+      })
+      expect(response).toEqual(expect.objectContaining({ status: 'success' }));
     });
   });
 });
