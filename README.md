@@ -24,9 +24,9 @@ $ npm install
 $ npm run start
 ```
 
-Main server will run on http://localhost:3000
-Email service will run on localhost:3001
-Mailbox webapp will run on http://localhost:1080
+Main server will run on http://localhost:3000 <br>
+Email service will run on localhost:3001 <br>
+Mailbox webapp will run on http://localhost:1080 <br>
 
 ## Test
 
