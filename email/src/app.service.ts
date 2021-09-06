@@ -1,8 +1,25 @@
 import { Injectable } from '@nestjs/common';
+import NotifmeSdk from 'notifme-sdk';
 
+export interface EmailOptions {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+}
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+
+  notifme = new NotifmeSdk({
+    useNotificationCatcher: true
+  })
+
+  sendEmail (options: EmailOptions) {
+
+    return this.notifme.send({
+      email: options
+    })
+
   }
+
 }
